@@ -16,6 +16,28 @@ Which transform source code into tokens (words, numbers, literals).
 
 Write top-down recursive descent parser for your grammar, which accepts or rejects input.
 
+program -> block
+
+block -> `{` stmts `}`
+
+stmts -> stmts1 stmt
+      |  ϵ
+
+stmt -> expr;
+      | if(expr) stmts1
+      | while(expr) stmts1
+      | block
+
+expr -> rel = expr1
+      | rel
+
+rel -> rel1 < term
+     | rel1 <= factor
+     | term
+
+term -> (expr)
+      | num
+
 ## Syntax tree
 
 Add syntax tree generation into your parser.
